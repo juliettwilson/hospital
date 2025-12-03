@@ -1,6 +1,5 @@
 package com.example.hospital.service;
 
-import com.example.hospital.service.PatientService;
 import com.example.hospital.repository.PatientRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,11 +12,16 @@ public class PatientService {
 
     private final PatientRepository patientRepository;
 
-    public void createPatient(Patient patient) {
+    public Patient createPatient(Patient patient) {
         return patientRepository.save(patient);
     }
 
     public List<Patient> getAllPatients() {
-        patientRepository.getPatientById(id);
+        return patientRepository.findAll();
+    }
+
+    public Patient getPatientById(Long id) {
+        return patientRepository.findById(id)
+                .orElse(null);
     }
 }

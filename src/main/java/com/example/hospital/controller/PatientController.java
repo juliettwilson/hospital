@@ -3,25 +3,28 @@ package com.example.hospital.controller;
 import com.example.hospital.entity.Patient;
 import com.example.hospital.service.PatientService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping
+@RequestMapping("/patients")
 public class PatientController {
     private final PatientService patientService;
 
-    @PostMapping("/patients")
-    private void create(Patient patient) {
-        patientService.save(patient);
+    @PostMapping
+    public Patient createPatient(@RequestBody Patient patient) {
+        return patientService.createPatient(patient);
     }
 
-            @GetMapping
-    public List<Patient> getAll() {
-        patientService.getAllPatients();
-            }
+    @GetMapping
+    public List<Patient> getAllPatients() {
+        return patientService.getAllPatients();
+    }
+
+    @GetMapping("/{id}")
+    public Patient getPatientById(@PathVariable Long id) {
+        return patientService.getPatientById(id);
+    }
 }

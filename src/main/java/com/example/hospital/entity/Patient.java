@@ -1,10 +1,7 @@
 package com.example.hospital.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "patient")
 public class Patient {
 
     @Id
@@ -20,4 +18,5 @@ public class Patient {
     private Long id;
     private String name;
     private int age;
+    private String phone;
 }
